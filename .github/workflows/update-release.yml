@@ -6,9 +6,10 @@ on:
     - cron: '0 0 * * 0'  # runs weekly
 
 env:
-  REGISTRY_USER: rh-ee-chbutler
-  IMAGE_REGISTRY: quay.io
-  IMAGE: bootc-lab
+  REGISTRY_USER: butler54
+  REGISTRY_NAMESPACE: tempest-concorde
+  IMAGE_REGISTRY: ghcr.io
+  IMAGE: satisfactory
 
 jobs:
   buildrelease:
@@ -42,22 +43,14 @@ jobs:
       uses: redhat-actions/podman-login@v1
       with:
         username: ${{ env.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         registry: ${{ env.IMAGE_REGISTRY }}
-    - name: Log in to registry.redhat.io
-      uses: redhat-actions/podman-login@v1
-      with:
-        username: ${{ secrets.RH_REGISTRY_USER }} # service account
-        password: ${{ secrets.RH_REGISTRY_PASSWORD }} # service accounts
-        registry: registry.redhat.io
-    - name: dump authfile
-      run: |
-        echo "${{ secrets.AUTHCRED }}" > auth.json
+
     - name: Build Image
       id: build-image
       uses: redhat-actions/buildah-build@v2
       with:
-        image: "quay.io/${{ env.REGISTRY_USER }}/${{ env.IMAGE }}"
+        image: "${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}"
         tags: latest prod ${{ steps.parse_version.outputs.VERSION }} ${{ github.sha }}
         containerfiles: |
           ./Containerfile
@@ -70,14 +63,13 @@ jobs:
       with:
         image: ${{ env.IMAGE }}
         tags: latest prod ${{ steps.parse_version.outputs.VERSION }} ${{ github.sha }} 
-        registry: quay.io/${{ env.REGISTRY_USER }}
+        registry: ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}
     
     - name: what would we sign
-      run: podman image inspect --format '{{ .Digest }}' quay.io/${{ env.REGISTRY_USER }}/${{ env.IMAGE }}
+      run: podman image inspect --format '{{ .Digest }}' ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}
       
     - name: Sign image
-      #run: cosign sign  --yes -a tag=${{ steps.parse_version.outputs.VERSION }} -a tag=prod -a tag=latest -a tag=${{ github.sha }} -a sha=${{ github.sha }} -a run_id=${{github.run_id}} -a run_attempt="$GITHUB_RUN_ATTEMPT" quay.io/${{ env.REGISTRY_USER }}/${{ env.IMAGE }}@`podman image inspect --format '{{ .Digest }}' quay.io/${{ env.REGISTRY_USER }}/${{ env.IMAGE }}`
-      run: cosign sign  --yes -a tag=${{ steps.parse_version.outputs.VERSION }} -a tag=prod -a tag=latest -a tag=${{ github.sha }} -a sha=${{ github.sha }} -a run_id=${{github.run_id}} -a run_attempt="$GITHUB_RUN_ATTEMPT" quay.io/${{ env.REGISTRY_USER }}/${{ env.IMAGE }}:prod
+      run: cosign sign  --yes -a tag=${{ steps.parse_version.outputs.VERSION }} -a tag=prod -a tag=latest -a tag=${{ github.sha }} -a sha=${{ github.sha }} -a run_id=${{github.run_id}} -a run_attempt="$GITHUB_RUN_ATTEMPT" ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}:prod
     - name: delete secrets
       if: always()
       run: rm -f auth.json

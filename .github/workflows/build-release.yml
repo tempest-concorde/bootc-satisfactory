@@ -35,7 +35,7 @@ jobs:
       uses: redhat-actions/podman-login@v1
       with:
         username: ${{ env.REGISTRY_USER }}
-        password: ${{ secrets.REGISTRY_PASSWORD }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         registry: ${{ env.IMAGE_REGISTRY }}
 
     - name: Build Image
@@ -55,10 +55,10 @@ jobs:
       with:
         image: ${{ env.IMAGE }}
         tags: latest prod ${{ steps.parse_version.outputs.VERSION }} ${{ github.sha }} 
-        registry: ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_USER }}
+        registry: ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}
     
     - name: what would we sign
-      run: podman image inspect --format '{{ .Digest }}' ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_USER }}/${{ env.IMAGE }}
+      run: podman image inspect --format '{{ .Digest }}' ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}
       
     - name: Sign image
       run: cosign sign  --yes -a tag=${{ steps.parse_version.outputs.VERSION }} -a tag=prod -a tag=latest -a tag=${{ github.sha }} -a sha=${{ github.sha }} -a run_id=${{github.run_id}} -a run_attempt="$GITHUB_RUN_ATTEMPT" ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}:prod
