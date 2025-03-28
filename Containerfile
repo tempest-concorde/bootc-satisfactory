@@ -14,6 +14,8 @@ RUN dnf -y install wget \
     libstdc++.i686
 
 COPY steam /usr/local/bin/
+COPY files/steam-sysuser.conf /usr/lib/sysusers.d/
+COPY files/satisfactory.service /etc/systemd/system/satisfactory.service
 
 ADD files/sudoers.d/wheel-passwordless-sudo /etc/sudoers.d/
 ADD files/chrony.conf /etc/
