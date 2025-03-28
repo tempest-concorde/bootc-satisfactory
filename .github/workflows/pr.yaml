@@ -1,0 +1,46 @@
+name: Build bootc container based on pr to latest
+
+on:
+  pull_request:
+    branches:
+      - main
+env:
+  REGISTRY_USER: butler54
+  REGISTRY_NAMESPACE: tempest-concorde
+  IMAGE_REGISTRY: ghcr.io
+  IMAGE: satisfactory
+
+jobs:
+  buildlatest:
+    name: Build Bootc image with repo access
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Download and decompress steam
+      run: | 
+        mkdir -p steam
+        cd steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+    - name: Log in to ghcr.io
+      uses: redhat-actions/podman-login@v1
+      with:
+        username: ${{ env.REGISTRY_USER }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: ${{ env.IMAGE_REGISTRY }}
+
+    - name: Build Image
+      id: build-image
+      uses: redhat-actions/buildah-build@v2
+      with:
+        image: "${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}"
+        tags: latest ${{ github.sha }}
+        containerfiles: |
+         ./Containerfile
+    - name: delete secrets
+      if: always()
+      run: rm -f auth.json
