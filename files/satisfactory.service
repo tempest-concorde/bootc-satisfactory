@@ -1,0 +1,22 @@
+[Unit]
+Description=Satisfactory dedicated server
+Wants=network-online.target
+After=syslog.target network.target nss-lookup.target network-online.target
+
+[Service]
+# Environment="LD_LIBRARY_PATH=./linux64"
+ExecStartPre=/usr/local/bin/steamcmd.sh +force_install_dir /var/home/steam/SatisfactoryDedicatedServer +login anonymous +app_update 1690800 validate +quit
+ExecStart=/var/home/steam/SatisfactoryDedicatedServer/FactoryServer.sh -ServerQueryPort=15777 -BeaconPort=15000 -Port=7777 -log -unattended -multihome=0.0.0.0
+User=steam
+Group=steam
+StandardOutput=journal
+Restart=on-failure
+WorkingDirectory=/var/home/steam
+StandardOutput=append:/var/log/satisfactory.log
+StandardError=append:/var/log/satisfactory.err
+
+[Install]
+WantedBy=multi-user.target
+
+
+
