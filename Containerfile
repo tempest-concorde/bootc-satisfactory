@@ -11,9 +11,9 @@ RUN dnf -y install wget \
     openssh-server \
     git \
     tmux \
-    cloud-init \ 
+    cloud-init \
     qemu-guest-agent \
-    tailscale
+    tailscale \
     steam
 
 ADD files/sudoers.d/wheel-passwordless-sudo /etc/sudoers.d/
