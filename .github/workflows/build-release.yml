@@ -30,7 +30,11 @@ jobs:
         VERSION=${GITHUB_REF#refs/tags/v}
         echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-    
+    - name: Download and decompress steam
+      run: | 
+        mkdir -p steam
+        cd steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+
     - name: Log in to ghcr.io
       uses: redhat-actions/podman-login@v1
       with:

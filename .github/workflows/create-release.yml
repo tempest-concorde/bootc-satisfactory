@@ -29,11 +29,11 @@ jobs:
         username: ${{ env.REGISTRY_USER }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ${{ env.IMAGE_REGISTRY }}
-
-    - name: dump authfile
-      run: |
-        echo "${{ secrets.AUTHCRED }}" > auth.json
-
+    - name: Download and decompress steam
+      run: | 
+        mkdir -p steam
+        cd steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+          
     - name: Build Image
       id: build-image
       uses: redhat-actions/buildah-build@v2

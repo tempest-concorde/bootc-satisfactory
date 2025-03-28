@@ -1,9 +1,5 @@
 FROM quay.io/fedora/fedora-bootc:41
 
-RUN cat /etc/ostree/auth.json | wc -c
-
-RUN dnf -y install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-
 RUN dnf -y install wget \
     curl \
     vim-enhanced \
@@ -14,11 +10,13 @@ RUN dnf -y install wget \
     cloud-init \
     qemu-guest-agent \
     tailscale \
-    steam
+    glibc.i686 \
+    libstdc++.i686
+
+COPY steam /usr/local/bin/
 
 ADD files/sudoers.d/wheel-passwordless-sudo /etc/sudoers.d/
 ADD files/chrony.conf /etc/
 
-RUN which steamcmd
 
 RUN bootc container lint

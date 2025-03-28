@@ -22,7 +22,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
-  
+    - name: Download and decompress steam
+      run: | 
+        mkdir -p steam
+        cd steam && curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
     - name: Log in to ghcr.io
       uses: redhat-actions/podman-login@v1
       with:
