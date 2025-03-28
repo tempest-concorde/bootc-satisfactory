@@ -19,4 +19,6 @@ RUN dnf -y install wget \
 ADD files/sudoers.d/wheel-passwordless-sudo /etc/sudoers.d/
 ADD files/chrony.conf /etc/
 
+RUN which steamcmd
+
 RUN bootc container lint
