@@ -51,7 +51,7 @@ jobs:
       uses: redhat-actions/buildah-build@v2
       with:
         image: "${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}"
-        tags: latest prod ${{ steps.parse_version.outputs.VERSION }} ${{ github.sha }}
+        tags: latest prod ${{ steps.get_latest_tag.outputs.VERSION }} ${{ github.sha }}
         containerfiles: |
           ./Containerfile
   
@@ -62,14 +62,14 @@ jobs:
       uses: redhat-actions/push-to-registry@v2
       with:
         image: ${{ env.IMAGE }}
-        tags: latest prod ${{ steps.parse_version.outputs.VERSION }} ${{ github.sha }} 
+        tags: latest prod ${{ steps.get_latest_tag.outputs.VERSION }} ${{ github.sha }} 
         registry: ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}
     
     - name: what would we sign
       run: podman image inspect --format '{{ .Digest }}' ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}
       
     - name: Sign image
-      run: cosign sign  --yes -a tag=${{ steps.parse_version.outputs.VERSION }} -a tag=prod -a tag=latest -a tag=${{ github.sha }} -a sha=${{ github.sha }} -a run_id=${{github.run_id}} -a run_attempt="$GITHUB_RUN_ATTEMPT" ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}:prod
+      run: cosign sign  --yes -a tag=${{ steps.get_latest_tag.outputs.VERSION }} -a tag=prod -a tag=latest -a tag=${{ github.sha }} -a sha=${{ github.sha }} -a run_id=${{github.run_id}} -a run_attempt="$GITHUB_RUN_ATTEMPT" ${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}:prod
     - name: delete secrets
       if: always()
       run: rm -f auth.json

@@ -39,7 +39,7 @@ jobs:
       uses: redhat-actions/buildah-build@v2
       with:
         image: "${{ env.IMAGE_REGISTRY }}/${{ env.REGISTRY_NAMESPACE }}/${{ env.IMAGE }}"
-        tags: latest prod ${{ steps.parse_version.outputs.VERSION }} ${{ github.sha }}
+        tags: latest prod ${{ github.sha }}
         containerfiles: |
           ./Containerfile
           
