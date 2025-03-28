@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## v0.2.0 (2025-03-28)
+
+### Feature
+
+* feat: satisfactory service automation (#2)
+
+* feat: add satisfactory service
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: add missing files
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: no idea what is happening
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`f39b033`](https://github.com/tempest-concorde/bootc-satisfactory/commit/f39b033f725079c4197262eede9630b45e9178c2))
+
 ## v0.1.0 (2025-03-28)
 
 ### Feature
