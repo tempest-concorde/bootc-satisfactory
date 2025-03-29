@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.2.1 (2025-03-29)
+
+### Fix
+
+* fix: clean up build (#3)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`4a3609b`](https://github.com/tempest-concorde/bootc-satisfactory/commit/4a3609bc60c11db3119718956b1b8bbea825523c))
+
 ## v0.2.0 (2025-03-28)
 
 ### Feature
