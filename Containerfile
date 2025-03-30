@@ -1,5 +1,9 @@
 FROM quay.io/fedora/fedora-bootc:41
 
+RUN dnf -y install dnf5-plugins
+
+RUN dnf config-manager addrepo --from-repofile https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+
 RUN dnf -y install wget \
     curl \
     vim-enhanced \
