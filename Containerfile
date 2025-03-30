@@ -18,6 +18,7 @@ RUN dnf -y install wget \
     libstdc++.i686
 
 COPY steam /usr/local/bin/
+RUN chmod a+x /usr/local/bin/steamcmd.sh
 COPY files/steam-sysuser.conf /usr/lib/sysusers.d/
 COPY files/steam-home.conf /etc/tmpfiles.d/steam.conf
 COPY files/satisfactory.service /etc/systemd/system/satisfactory.service
