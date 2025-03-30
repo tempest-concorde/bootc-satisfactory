@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.3.4 (2025-03-30)
+
+### Fix
+
+* fix: steamcmd permissions
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`fc02de9`](https://github.com/tempest-concorde/bootc-satisfactory/commit/fc02de9fdaa656e648d31bf168265b29219d49dc))
+
 ## v0.3.3 (2025-03-30)
 
 ### Fix
