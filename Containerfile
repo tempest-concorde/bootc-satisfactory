@@ -17,9 +17,9 @@ RUN dnf -y install wget \
     glibc.i686 \
     libstdc++.i686
 
-COPY steam /usr/local/bin/
-RUN chmod a+x /usr/local/bin/steamcmd.sh
-RUN chmod a+x /usr/local/bin/linux32/steamcmd
+COPY steam /etc/steam
+RUN chmod a+x /etc/steam/steamcmd.sh
+RUN chmod a+x /etc/steam/linux32/steamcmd
 COPY files/steam-sysuser.conf /usr/lib/sysusers.d/
 COPY files/steam-home.conf /etc/tmpfiles.d/steam.conf
 
