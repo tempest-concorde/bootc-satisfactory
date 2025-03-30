@@ -19,8 +19,10 @@ RUN dnf -y install wget \
 
 COPY steam /usr/local/bin/
 RUN chmod a+x /usr/local/bin/steamcmd.sh
+RUN chmod a+x /usr/local/bin/linux32/steamcmd
 COPY files/steam-sysuser.conf /usr/lib/sysusers.d/
 COPY files/steam-home.conf /etc/tmpfiles.d/steam.conf
+
 COPY files/satisfactory.service /etc/systemd/system/satisfactory.service
 
 ADD files/sudoers.d/wheel-passwordless-sudo /etc/sudoers.d/
