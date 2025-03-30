@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.3.3 (2025-03-30)
+
+### Fix
+
+* fix: correct permissions
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`60b8b72`](https://github.com/tempest-concorde/bootc-satisfactory/commit/60b8b72a9f74aeefc726df383825bd08d91aa425))
+
 ## v0.3.2 (2025-03-30)
 
 ### Fix
