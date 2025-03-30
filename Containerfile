@@ -20,5 +20,6 @@ COPY files/satisfactory.service /etc/systemd/system/satisfactory.service
 ADD files/sudoers.d/wheel-passwordless-sudo /etc/sudoers.d/
 ADD files/chrony.conf /etc/
 
-
+RUN ln -s /lib/systemd/system/tailscaled.service /etc/systemd/system/multi-user.target.wants/tailscaled.service
+RUN ln -s /etc/systemd/system/tailscaled.service /etc/systemd/system/multi-user.target.wants/satisfactory.service
 RUN bootc container lint
