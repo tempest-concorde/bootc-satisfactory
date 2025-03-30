@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.3.1 (2025-03-30)
+
+### Fix
+
+* fix: add tailscale repo (#5)
+
+* fix: add tailscale repo
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* fix: add dnf5 plugins
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`815e8e4`](https://github.com/tempest-concorde/bootc-satisfactory/commit/815e8e45fe665ef30dc4c95dbb7eb9680475d8d5))
+
 ## v0.3.0 (2025-03-30)
 
 ### Feature
