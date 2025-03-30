@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.3.2 (2025-03-30)
+
+### Fix
+
+* fix: correct service location (#6)
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`f4829b7`](https://github.com/tempest-concorde/bootc-satisfactory/commit/f4829b78eb424df4c6920b29451e2580e842fcd6))
+
 ## v0.3.1 (2025-03-30)
 
 ### Fix
