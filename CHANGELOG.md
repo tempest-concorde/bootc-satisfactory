@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.4.0 (2025-03-30)
+
+### Feature
+
+* feat: move steam to mutable dir.. because its steam
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`5f3dec1`](https://github.com/tempest-concorde/bootc-satisfactory/commit/5f3dec12e2d263377409b7078b41856f5eb10230))
+
 ## v0.3.4 (2025-03-30)
 
 ### Fix
