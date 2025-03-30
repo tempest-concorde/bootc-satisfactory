@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v0.3.0 (2025-03-30)
+
+### Feature
+
+* feat: ensure services are running (#4)
+
+* feat: ensure services are running
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+* feat: add steam home directory
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt;
+
+---------
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`0bea482`](https://github.com/tempest-concorde/bootc-satisfactory/commit/0bea4828ffedfe7cdc5ae181e39b010fbd7ec881))
+
 ## v0.2.1 (2025-03-29)
 
 ### Fix
