@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.5.0 (2025-04-12)
+
+### Feature
+
+* feat: change systemd parameters
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`49041d0`](https://github.com/tempest-concorde/bootc-satisfactory/commit/49041d08fd6cd3c835aed45892216565809b3492))
+
 ## v0.4.0 (2025-03-30)
 
 ### Feature
