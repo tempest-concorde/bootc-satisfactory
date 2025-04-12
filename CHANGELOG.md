@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.6.0 (2025-04-12)
+
+### Feature
+
+* feat: update containerfile
+
+Signed-off-by: Chris Butler &lt;chris.butler@redhat.com&gt; ([`d512308`](https://github.com/tempest-concorde/bootc-satisfactory/commit/d512308355fc7b13f2484f1254cca133e4e622fd))
+
 ## v0.5.0 (2025-04-12)
 
 ### Feature
