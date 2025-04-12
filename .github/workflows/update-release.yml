@@ -37,7 +37,10 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ steps.get_latest_tag.outputs.LATEST_TAG }}
-        
+    - name: Download ficsit
+      run: |
+        make get-ficsit
+                
     - name: Download and decompress steam
       run: | 
         mkdir -p steam

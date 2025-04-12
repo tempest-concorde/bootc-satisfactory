@@ -22,6 +22,10 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+    - name: Download ficsit
+      run: |
+        make get-ficsit
+        
     - name: Download and decompress steam
       run: | 
         mkdir -p steam

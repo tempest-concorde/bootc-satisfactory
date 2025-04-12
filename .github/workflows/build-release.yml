@@ -30,6 +30,10 @@ jobs:
         VERSION=${GITHUB_REF#refs/tags/v}
         echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
+    - name: Download ficsit
+      run: |
+        make get-ficsit
+
     - name: Download and decompress steam
       run: | 
         mkdir -p steam

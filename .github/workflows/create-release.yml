@@ -29,6 +29,10 @@ jobs:
         username: ${{ env.REGISTRY_USER }}
         password: ${{ secrets.GITHUB_TOKEN }}
         registry: ${{ env.IMAGE_REGISTRY }}
+    - name: Download ficsit
+      run: |
+        make get-ficsit
+        
     - name: Download and decompress steam
       run: | 
         mkdir -p steam

@@ -1,5 +1,11 @@
 
+
+get-ficsit:
+	wget https://github.com/satisfactorymodding/ficsit-cli/releases/download/v0.6.0/ficsit_linux_amd64.rpm
+
+
 image:
+
 
 
 iso:
